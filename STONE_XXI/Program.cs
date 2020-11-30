@@ -12,7 +12,7 @@ namespace STONE_XXI
 
       if (args.Length == 9)
       {
-        connectToDB(args[0], args[1], args[2], args[3], args[4] // DB params
+        getCurrencyOnDate(args[0], args[1], args[2], args[3], args[4] // DB params
           , Convert.ToInt16(args[5]), Convert.ToInt16(args[6]), Convert.ToInt16(args[7]) // date
           , args[8]); //currency
       } else
@@ -24,8 +24,7 @@ namespace STONE_XXI
       }
 
     }
-
-    private static void connectToDB(string username, string password, string hostname, string port, string serviceName, int day, int month, int year, string currency)
+    private static void getCurrencyOnDate(string username, string password, string hostname, string port, string serviceName, int day, int month, int year, string currency)
     {
 
       OracleConnection conn = DBUtils.GetDBConnection(username, password, hostname, port, serviceName);
