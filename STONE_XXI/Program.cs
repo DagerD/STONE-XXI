@@ -10,9 +10,11 @@ namespace STONE_XXI
     static void Main(string[] args)
     {
 
-      if (args.Length == 5)
+      if (args.Length == 9)
       {
-        connectToDB(args[0], args[1], args[2], args[3], args[4]);
+        connectToDB(args[0], args[1], args[2], args[3], args[4] // DB params
+          , Convert.ToInt16(args[5]), Convert.ToInt16(args[6]), Convert.ToInt16(args[7]) // date
+          , args[8]); //currency
       } else
       {
         Console.WriteLine("Введены не все данные для подключения");
@@ -23,7 +25,7 @@ namespace STONE_XXI
 
     }
 
-    private static void connectToDB(string username, string password, string hostname, string port, string serviceName)
+    private static void connectToDB(string username, string password, string hostname, string port, string serviceName, int day, int month, int year, string currency)
     {
 
       OracleConnection conn = DBUtils.GetDBConnection(username, password, hostname, port, serviceName);
@@ -42,12 +44,18 @@ namespace STONE_XXI
 
       Console.WriteLine("Connected to Oracle" + conn.ServerVersion);
 
-      int day = 28;
-      int month = 11;
-      int year = 2020;
-      string date = new DateTime(year, month, day).ToString("dd/MM/yyyy");
+      string date = "";
 
-      string currency = "XDR";
+      try
+      {
+        date = new DateTime(year, month, day).ToString("dd/MM/yyyy");
+      } catch (ArgumentOutOfRangeException err)
+      {
+        Console.WriteLine("Неверно указана дата\n:");
+        Console.WriteLine(err);
+        Console.WriteLine("\nДля закрытия программы нажмите любую кнопку на клавиатуре");
+        Console.ReadKey();
+      }
 
       double dr = OracleUtils.getCurrencyOnDate(conn, date, currency);
 
