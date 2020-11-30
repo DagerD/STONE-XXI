@@ -19,6 +19,9 @@
 2) Приложение:
   - установить https://www.nuget.org/packages/oracle.manageddataaccess/
   - открыть в Visual Studio .sln файл
+  - убедиться, что references совпадают, добавить отсутствующие
+  
+    ![alt text](references.png)​
   - Build
   - либо запустить через консоль экзешник, либо в VS со следующими параметрами (через пробел): 
       username password hostname port serviceName dd mm yyyy currency (пример: "STONE_XXI.exe USER USER 127.0.0.1 1521 XEPDB1 28 11 2020 AUD")
