@@ -2,9 +2,9 @@ BEGIN
     DBMS_SCHEDULER.CREATE_JOB (
             job_name => '"USER_MARKELOV".""',
             job_type => 'STORED_PROCEDURE',
-            job_action => 'USER_MARKELOV.STONE_XXI.FILL_CURRENCY',
+            job_action => 'USER_MARKELOV.STONE_XXI.FILL_CURRENCY_LIB',
             number_of_arguments => 0,
-            start_date => TO_TIMESTAMP_TZ('2020-11-30 12:01:00.943000000 EUROPE/MOSCOW','YYYY-MM-DD HH24:MI:SS.FF TZR'),
+            start_date => TO_TIMESTAMP_TZ('2020-11-30 12:00:00.943000000 EUROPE/MOSCOW','YYYY-MM-DD HH24:MI:SS.FF TZR'),
             repeat_interval => 'FREQ=DAILY;BYDAY=MON,TUE,WED,THU,FRI,SAT,SUN',
             end_date => NULL,
             enabled => FALSE,
